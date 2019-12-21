@@ -1,0 +1,12 @@
+.TastingNotes {
+  width: fit-content;
+  margin: auto;
+}
+
+.TastingNotes li {
+  list-style-type: none;
+}
+
+.TastingNotes ul {
+  padding: 0;
+}
