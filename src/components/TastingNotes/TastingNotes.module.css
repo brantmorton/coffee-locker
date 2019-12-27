@@ -8,5 +8,6 @@
 }
 
 .TastingNotes ul {
-  padding: 0;
+  padding-left: 0;
+  margin: auto;
 }

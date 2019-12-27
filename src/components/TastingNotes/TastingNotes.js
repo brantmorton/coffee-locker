@@ -14,7 +14,7 @@ const tastingNotes = props => {
 
   return (
     <div className={styles.TastingNotes}>
-      Tasting Notes:
+      <strong>Tasting Notes:</strong>
       <ul>{transformedNotes}</ul>
     </div>
   );
