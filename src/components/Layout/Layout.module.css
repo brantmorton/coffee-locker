@@ -1,5 +1,5 @@
 .Layout {
-  margin-top: 16px;
   display: flex;
   flex-flow: column;
+  background-color: #e4cab8b9;
 }
