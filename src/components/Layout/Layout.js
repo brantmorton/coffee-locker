@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
+import CoffeePosts from "../../containers/CoffeePosts/CoffeePosts";
 
 class Layout extends Component {
   state = {
@@ -11,13 +12,13 @@ class Layout extends Component {
 
   sideDrawerClosedHandler = () => {
     this.setState({ showSideDrawer: false });
-  }
+  };
 
   sideDrawerToggleHandler = () => {
     this.setState(prevState => {
       return { showSideDrawer: !prevState.showSideDrawer };
     });
-  }
+  };
 
   render() {
     return (
@@ -27,7 +28,7 @@ class Layout extends Component {
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
         />
-        {this.props.children}
+        <CoffeePosts />
       </div>
     );
   }

@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 
 import CoffeePost from "../../components/CoffeePost/CoffeePost";
+import PostForm from "../../components/PostForm/PostForm";
 import axios from "axios";
 
 class CoffeePosts extends Component {
   state = {
-    posts: null
+    posts: null,
+    roaster: null,
+    origin: null,
+    region: null,
+    process: null,
+    rating: null,
+    notes: null
   };
 
   componentDidMount() {
@@ -16,30 +23,36 @@ class CoffeePosts extends Component {
     axios
       .get("https://coffee-locker.firebaseio.com/posts.json")
       .then(response => this.setState({ posts: response.data }));
+    // set up error handling
   };
 
   addPostHandler = () => {
     const post = {
-      roaster: "Brant",
-      origin: "Columbian",
-      region: "Los Atmos",
-      process: "Natural",
-      notes: ["blueberry", "honey", "floral"],
-      rating: 9,
-      key: Date.now()
+      roaster: this.state.roaster,
+      origin: this.state.origin,
+      region: this.state.region,
+      process: this.state.process,
+      notes: [this.state.notes],
+      rating: this.state.rating
     };
 
     axios
       .post("https://coffee-locker.firebaseio.com/posts.json", post)
       .then(response => {
         this.getPosts();
+        // set up error handling
+        // maybe a more efficient way to do this?
       });
+  };
+
+  updateInput = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     let coffeePosts = <p>Loading...</p>;
     if (this.state.posts) {
-      const reversedCoffeePosts = Object.keys(this.state.posts).reverse()
+      const reversedCoffeePosts = Object.keys(this.state.posts).reverse();
       coffeePosts = reversedCoffeePosts.map(post => {
         return (
           <CoffeePost
@@ -49,7 +62,7 @@ class CoffeePosts extends Component {
             process={this.state.posts[post].process}
             notes={this.state.posts[post].notes}
             rating={this.state.posts[post].rating}
-            key={this.state.key}
+            key={post}
           />
         );
       });
@@ -57,8 +70,14 @@ class CoffeePosts extends Component {
 
     return (
       <div>
-        <button onClick={this.addPostHandler}>Add Post</button>
-        <div>{coffeePosts}</div>;
+        <PostForm
+          addPost={this.addPostHandler}
+          roaster={this.state.roaster}
+          updateInput={this.updateInput}
+        >
+          Add Post
+        </PostForm>
+        <div>{coffeePosts}</div>
       </div>
     );
   }
