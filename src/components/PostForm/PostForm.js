@@ -50,7 +50,12 @@ const postForm = props => {
       <Input name="notes" purpose={props.notes} updateInput={props.updateInput}>
         Notes:{" "}
       </Input>
-      <Button clicked={props.addPost}>Add Post</Button>
+      <div>
+        <Button clicked={props.addPost}>Submit</Button>
+        <Button btnType="Danger" clicked={props.close}>
+          Close
+        </Button>
+      </div>
     </div>
   );
 };

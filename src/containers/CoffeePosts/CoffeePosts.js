@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import CoffeePost from "../../components/CoffeePost/CoffeePost";
 import PostForm from "../../components/PostForm/PostForm";
+import Button from "../../components/UI/Button/Button"
 import axios from "axios";
 
 class CoffeePosts extends Component {
@@ -12,7 +13,8 @@ class CoffeePosts extends Component {
     region: null,
     process: null,
     rating: null,
-    notes: null
+    notes: null,
+    isPostFormShowing: false
   };
 
   componentDidMount() {
@@ -49,6 +51,12 @@ class CoffeePosts extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  postFormToggleHandler = () => {
+    this.setState(prevState => ({
+      isPostFormShowing: !prevState.isPostFormShowing
+    }));
+  };
+
   render() {
     let coffeePosts = <p>Loading...</p>;
     if (this.state.posts) {
@@ -68,16 +76,26 @@ class CoffeePosts extends Component {
       });
     }
 
-    return (
-      <div>
+    let postForm = (
+      <Button clicked={this.postFormToggleHandler}>Add Post</Button>
+    );
+    if (this.state.isPostFormShowing) {
+      postForm = (
         <PostForm
           addPost={this.addPostHandler}
           roaster={this.state.roaster}
           updateInput={this.updateInput}
+          close={this.postFormToggleHandler}
         >
           Add Post
         </PostForm>
-        <div>{coffeePosts}</div>
+      );
+    }
+
+    return (
+      <div>
+        {postForm}
+        {coffeePosts}
       </div>
     );
   }
