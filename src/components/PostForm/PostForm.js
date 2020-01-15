@@ -2,6 +2,7 @@ import React from "react";
 
 import Input from "../Input/Input";
 import Button from "../UI/Button/Button";
+import StarRatingComponent from "react-star-rating-controlled-component";
 import styles from "./PostForm.module.css";
 
 const postForm = props => {
@@ -39,18 +40,21 @@ const postForm = props => {
         Process:{" "}
       </Input>
 
-      <Input
-        name="rating"
-        purpose={props.rating}
-        updateInput={props.updateInput}
-      >
-        Rating:{" "}
-      </Input>
-
       <Input name="notes" purpose={props.notes} updateInput={props.updateInput}>
         Notes:{" "}
       </Input>
+
       <div>
+        <label htmlFor="setRating">Rating: </label>
+        <StarRatingComponent
+          className={styles.StarRatingComponent}
+          name="setRating"
+          starCount={5}
+          value={props.starRating}
+          onStarClick={props.starClick}
+        />
+      </div>
+    <div>
         <Button clicked={props.addPost}>Submit</Button>
         <Button btnType="Danger" clicked={props.close}>
           Close

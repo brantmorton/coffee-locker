@@ -7,7 +7,22 @@
 
 label {
   display: inline-block;
-  
   width: 100px;
   padding: 10px 0;
 }
+
+.StarRatingComponent {
+  vertical-align: middle;
+}
+
+.StarRatingComponent label {
+  width: auto;
+  padding: 0 5px;
+  height: 1.5rem;
+}
+
+i {
+  font-size: 1.75rem;
+}
+
+

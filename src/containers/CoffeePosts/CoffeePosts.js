@@ -2,18 +2,20 @@ import React, { Component } from "react";
 
 import CoffeePost from "../../components/CoffeePost/CoffeePost";
 import PostForm from "../../components/PostForm/PostForm";
-import Button from "../../components/UI/Button/Button"
+import Button from "../../components/UI/Button/Button";
+
+
 import axios from "axios";
 
 class CoffeePosts extends Component {
   state = {
     posts: null,
-    roaster: null,
-    origin: null,
-    region: null,
-    process: null,
-    rating: null,
-    notes: null,
+    roaster: "",
+    origin: "",
+    region: "",
+    process: "",
+    rating: 0,
+    notes: "",
     isPostFormShowing: false
   };
 
@@ -57,6 +59,10 @@ class CoffeePosts extends Component {
     }));
   };
 
+  onStarClick = (nextValue, prevValue, name) => {
+    this.setState({ rating: nextValue });
+  }
+
   render() {
     let coffeePosts = <p>Loading...</p>;
     if (this.state.posts) {
@@ -86,6 +92,8 @@ class CoffeePosts extends Component {
           roaster={this.state.roaster}
           updateInput={this.updateInput}
           close={this.postFormToggleHandler}
+          starRating={this.state.rating}
+          starClick={this.onStarClick}
         >
           Add Post
         </PostForm>
