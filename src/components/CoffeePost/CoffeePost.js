@@ -1,7 +1,7 @@
 import React from "react";
 
-import Rating from "../Rating/Rating";
 import TastingNotes from "../TastingNotes/TastingNotes";
+import StarRatingComponent from "react-star-rating-controlled-component";
 import styles from "./CoffeePost.module.css";
 
 const coffeePost = props => {
@@ -13,7 +13,12 @@ const coffeePost = props => {
       </p>
       <p>Process: {props.process}</p>
       <TastingNotes notes={props.notes} />
-      <Rating rating={props.rating} />
+      <StarRatingComponent
+        className={styles.StarRatingComponent}
+        name="showRating"
+        value={props.starRating}
+        editing={false}
+      />
     </div>
   );
 };

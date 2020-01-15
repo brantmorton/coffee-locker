@@ -75,7 +75,7 @@ class CoffeePosts extends Component {
             region={this.state.posts[post].region}
             process={this.state.posts[post].process}
             notes={this.state.posts[post].notes}
-            rating={this.state.posts[post].rating}
+            starRating={this.state.posts[post].rating}
             key={post}
           />
         );

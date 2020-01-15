@@ -21,8 +21,7 @@ label {
   height: 1.5rem;
 }
 
-i {
+.StarRatingComponenet > i {
   font-size: 1.75rem;
+  
 }
-
-
