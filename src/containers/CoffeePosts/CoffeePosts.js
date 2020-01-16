@@ -59,8 +59,16 @@ class CoffeePosts extends Component {
     }));
   };
 
+
   onStarClick = (nextValue, prevValue, name) => {
     this.setState({ rating: nextValue });
+  }
+
+  onDeleteClick = (id) => {
+    axios.delete('https://coffee-locker.firebaseio.com/posts/' + id + '.json')
+      .then(response => {
+        this.getPosts();
+      })
   }
 
   render() {
@@ -77,6 +85,7 @@ class CoffeePosts extends Component {
             notes={this.state.posts[post].notes}
             starRating={this.state.posts[post].rating}
             key={post}
+            clickDelete={() => this.onDeleteClick(post)}
           />
         );
       });
