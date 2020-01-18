@@ -6,6 +6,7 @@ const button = props => (
   <button
     className={[styles.Button, styles[props.btnType], styles[props.extraStyles]].join(" ")}
     onClick={props.clicked}
+    type={props.type}
   >
     {props.children}
   </button>

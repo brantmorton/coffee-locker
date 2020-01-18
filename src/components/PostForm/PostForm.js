@@ -1,67 +1,95 @@
-import React from "react";
+import React, { Component } from "react";
 
-import Input from "../Input/Input";
-import Button from "../UI/Button/Button";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import StarRatingComponent from "react-star-rating-controlled-component";
+import Button from "../../components/UI/Button/Button";
 import styles from "./PostForm.module.css";
+import axios from "axios";
 
-const postForm = props => {
-  return (
-    <div className={styles.PostForm}>
-      <Input
-        name="roaster"
-        purpose={props.roaster}
-        updateInput={props.updateInput}
+class PostForm extends Component {
+  state = {
+    rating: 0
+  };
+
+  render() {
+    return (
+      <Formik
+        initialValues={{
+          roaster: "",
+          origin: "",
+          region: "",
+          process: "",
+          rating: 0,
+          notes: ""
+        }}
+        validationSchema={Yup.object({
+          roaster: Yup.string()
+            .required("Required")
+            .max(20, "Must be 20 characters or less"),
+          origin: Yup.string()
+            .required("Required")
+            .max(20, "Must be 20 characters or less"),
+          region: Yup.string().max(20, "Must be 20 characters or less"),
+          process: Yup.string().max(20, "Must be 20 characters or less"),
+          rating: Yup.number().required("Required"),
+          notes: Yup.string().max(20, "Must be 20 characters or less")
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          values.rating = this.state.rating;
+          axios
+            .post("https://coffee-locker.firebaseio.com/posts.json", values)
+            .then(response => {
+              //this.getPosts();
+              // set up error handling
+              // maybe a more efficient way to do this?
+            });
+        }}
+        validateOnBlur={false}
+        validateOnChange={false}
       >
-        Roaster:{" "}
-      </Input>
+        <Form>
+          <div>
+            <label htmlFor="roaster">Roaster</label>
+            <Field name="roaster" type="text" />
+            <ErrorMessage name="roaster" />
+          </div>
+          <div>
+            <label htmlFor="origin">Origin</label>
+            <Field name="origin" type="text" />
+            <ErrorMessage name="origin" />
+          </div>
+          <div>
+            <label htmlFor="region">Region</label>
+            <Field name="region" type="text" />
+            <ErrorMessage name="region" />
+          </div>
+          <div>
+            <label htmlFor="process">Process</label>
+            <Field name="process" type="text" />
+            <ErrorMessage name="process" />
+          </div>
+          <div>
+            <label htmlFor="notes">Notes</label>
+            <Field name="notes" type="text" />
+            <ErrorMessage name="notes" />
+          </div>
+          <StarRatingComponent
+            className={styles.StarRatingComponent}
+            value={this.state.rating}
+            onStarClick={nextValue => this.setState({ rating: nextValue })}
+            name="starRating"
+          />
+          <div>
+            <Button type="submit">Submit</Button>
+            <Button btnType="Danger" clicked={this.props.close}>
+              Close
+            </Button>
+          </div>
+        </Form>
+      </Formik>
+    );
+  }
+}
 
-      <Input
-        name="origin"
-        purpose={props.origin}
-        updateInput={props.updateInput}
-      >
-        Origin:{" "}
-      </Input>
-
-      <Input
-        name="region"
-        purpose={props.region}
-        updateInput={props.updateInput}
-      >
-        Region:{" "}
-      </Input>
-
-      <Input
-        name="process"
-        purpose={props.process}
-        updateInput={props.updateInput}
-      >
-        Process:{" "}
-      </Input>
-
-      <Input name="notes" purpose={props.notes} updateInput={props.updateInput}>
-        Notes:{" "}
-      </Input>
-
-      <div>
-        <label htmlFor="setRating">Rating: </label>
-        <StarRatingComponent
-          className={styles.StarRatingComponent}
-          name="setRating"
-          starCount={5}
-          value={props.starRating}
-          onStarClick={props.starClick}
-        />
-      </div>
-    <div>
-        <Button clicked={props.addPost}>Submit</Button>
-        <Button btnType="Danger" clicked={props.close}>
-          Close
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-export default postForm;
+export default PostForm;
