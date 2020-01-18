@@ -3,14 +3,12 @@ import React, { Component } from "react";
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
-import CoffeePosts from "../../containers/CoffeePosts/CoffeePosts";
-import PostForm from "../PostForm/PostForm";
-import Button from "../../components/UI/Button/Button";
+import PostContainer from "../../containers/PostContainer/PostContainer";
 
 class Layout extends Component {
   state = {
     showSideDrawer: false,
-    isPostFormShowing: false,
+    isPostFormShowing: false
   };
 
   sideDrawerClosedHandler = () => {
@@ -30,24 +28,20 @@ class Layout extends Component {
   };
 
   render() {
-    let postForm = (
-      <div>
-        <Button clicked={this.postFormToggleHandler}>Add Post</Button>
-      </div>
-    );
-    if (this.state.isPostFormShowing) {
-      postForm = <PostForm close={this.postFormToggleHandler} />;
-    }
-
     return (
       <div className={styles.Layout}>
-        <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+        <Toolbar
+          drawerToggleClicked={this.sideDrawerToggleHandler}
+          isPostFormShowing={this.state.isPostFormShowing}
+        />
         <SideDrawer
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
         />
-        {postForm}
-        <CoffeePosts />
+        <PostContainer
+          togglePostForm={this.postFormToggleHandler}
+          isPostFormShowing={this.state.isPostFormShowing}
+        />
       </div>
     );
   }

@@ -33,14 +33,15 @@ class PostForm extends Component {
           region: Yup.string().max(20, "Must be 20 characters or less"),
           process: Yup.string().max(20, "Must be 20 characters or less"),
           rating: Yup.number().required("Required"),
-          notes: Yup.string().max(20, "Must be 20 characters or less")
+          notes: Yup.string().max(40, "Must be 40 characters or less")
         })}
         onSubmit={(values, { setSubmitting }) => {
           values.rating = this.state.rating;
           axios
             .post("https://coffee-locker.firebaseio.com/posts.json", values)
             .then(response => {
-              //this.getPosts();
+              this.props.getPosts();
+              this.props.close()
               // set up error handling
               // maybe a more efficient way to do this?
             });
