@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import CoffeePosts from "../../components/CoffeePosts/CoffeePosts";
 import PostForm from "../../components/PostForm/PostForm";
-import Button from "../../components/UI/Button/Button";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
+import styles from "./PostContainer.module.css";
+import Aux from "../../hoc/Auxilary/Auxilary";
+import Modal from "../../components/UI/Modal/Modal"
 
 class PostContainer extends Component {
   state = {
@@ -32,21 +36,29 @@ class PostContainer extends Component {
 
   render() {
     let postForm = (
-      <div>
-        <Button clicked={this.props.togglePostForm}>Add Post</Button>
+      <div className={styles.AddButton}>
+        <Fab color="secondary" aria-label="add" onClick={this.props.togglePostForm} >
+          <AddIcon />
+        </Fab>
       </div>
     );
     if (this.props.isPostFormShowing) {
       postForm = (
-        <PostForm close={this.props.togglePostForm} getPosts={this.getPosts} />
+        <Aux>
+          <Modal
+            show={this.props.isPostFormShowing}
+            modalClosed={this.props.togglePostForm} >
+              <PostForm close={this.props.togglePostForm} getPosts={this.getPosts} />
+            </Modal>
+        </Aux>
       );
     }
 
     return (
-      <div>
+      <Aux>
         {postForm}
         <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
-      </div>
+      </Aux>
     );
   }
 }

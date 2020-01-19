@@ -5,12 +5,6 @@
   margin: auto;
 }
 
-label {
-  display: inline-block;
-  width: 100px;
-  padding: 10px 0;
-}
-
 .StarRatingComponent {
   vertical-align: middle;
 }
@@ -21,7 +15,14 @@ label {
   height: 1.5rem;
 }
 
-.StarRatingComponenet > i {
-  font-size: 1.75rem;
+i {
+  font-size: 2rem;
+}
+
+.Form {
+  margin: auto;
+}
+
+@media (min-width: 1000px) {
   
 }

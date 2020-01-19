@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 5vh auto;
     border-radius: 10px;
-    width: 50%;
+    width: 80%;
     padding: 10px;
     background-color: #fff;
 }
@@ -18,13 +18,10 @@ padding: 0px;
 height: 1.5rem;
 }
 
-i {
-font-size: 1.75rem;
-}
 
-
-@media (max-width: 400px) {
-    i {
-        font-size: 1rem;
+@media (min-width: 800px) {
+    .CoffeePost {
+        width: 60%;
     }
+    
 }

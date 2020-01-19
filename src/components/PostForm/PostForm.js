@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import TextFormField from "../UI/FormField/FormField";
 import StarRatingComponent from "react-star-rating-controlled-component";
 import Button from "../../components/UI/Button/Button";
 import styles from "./PostForm.module.css";
@@ -25,15 +26,15 @@ class PostForm extends Component {
         }}
         validationSchema={Yup.object({
           roaster: Yup.string()
-            .required("Required")
-            .max(20, "Must be 20 characters or less"),
+            .required()
+            .max(20),
           origin: Yup.string()
-            .required("Required")
-            .max(20, "Must be 20 characters or less"),
-          region: Yup.string().max(20, "Must be 20 characters or less"),
-          process: Yup.string().max(20, "Must be 20 characters or less"),
-          rating: Yup.number().required("Required"),
-          notes: Yup.string().max(40, "Must be 40 characters or less")
+            .required()
+            .max(20),
+          region: Yup.string().max(20),
+          process: Yup.string().max(20),
+          rating: Yup.number().required(),
+          notes: Yup.string().max(40)
         })}
         onSubmit={(values, { setSubmitting }) => {
           values.rating = this.state.rating;
@@ -41,39 +42,55 @@ class PostForm extends Component {
             .post("https://coffee-locker.firebaseio.com/posts.json", values)
             .then(response => {
               this.props.getPosts();
-              this.props.close()
+              this.props.close();
               // set up error handling
               // maybe a more efficient way to do this?
             });
         }}
-        validateOnBlur={false}
-        validateOnChange={false}
+        //validateOnBlur={false}
+        //validateOnChange={false}
       >
-        <Form>
+        <Form className={styles.Form}>
           <div>
-            <label htmlFor="roaster">Roaster</label>
-            <Field name="roaster" type="text" />
-            <ErrorMessage name="roaster" />
+            <Field
+              label="Roaster"
+              name="roaster"
+              component={TextFormField}
+              variant="outlined"
+            />
           </div>
           <div>
-            <label htmlFor="origin">Origin</label>
-            <Field name="origin" type="text" />
-            <ErrorMessage name="origin" />
+            <Field
+              label="Origin"
+              name="origin"
+              component={TextFormField}
+              variant="outlined"
+            />
           </div>
           <div>
-            <label htmlFor="region">Region</label>
-            <Field name="region" type="text" />
-            <ErrorMessage name="region" />
+            <Field
+              label="Region"
+              name="region"
+              component={TextFormField}
+              variant="outlined"
+            />
           </div>
           <div>
-            <label htmlFor="process">Process</label>
-            <Field name="process" type="text" />
-            <ErrorMessage name="process" />
+            <Field
+              label="Process"
+              name="process"
+              component={TextFormField}
+              variant="outlined"
+            />
           </div>
           <div>
-            <label htmlFor="notes">Notes</label>
-            <Field name="notes" type="text" />
-            <ErrorMessage name="notes" />
+            <Field
+              label="Tasting Notes"
+              name="notes"
+              helperText="(blueberry, fig, etc...)"
+              component={TextFormField}
+              variant="outlined"
+            />
           </div>
           <StarRatingComponent
             className={styles.StarRatingComponent}
@@ -81,7 +98,7 @@ class PostForm extends Component {
             onStarClick={nextValue => this.setState({ rating: nextValue })}
             name="starRating"
           />
-          <div>
+          <div style={{paddingTop: '10px'}}>
             <Button type="submit">Submit</Button>
             <Button btnType="Danger" clicked={this.props.close}>
               Close
