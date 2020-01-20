@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 import PostContainer from "../../containers/PostContainer/PostContainer";
+import LoginForm from "../LoginForm/LoginForm";
 
 class Layout extends Component {
   state = {
@@ -38,9 +40,15 @@ class Layout extends Component {
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
         />
-        <PostContainer
-          togglePostForm={this.postFormToggleHandler}
-          isPostFormShowing={this.state.isPostFormShowing}
+        <Route path="/login" render={() => <LoginForm />} />
+        <Route
+          path="/locker"
+          render={() => (
+            <PostContainer
+              togglePostForm={this.postFormToggleHandler}
+              isPostFormShowing={this.state.isPostFormShowing}
+            />
+          )}
         />
       </div>
     );
