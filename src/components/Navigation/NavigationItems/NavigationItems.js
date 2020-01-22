@@ -13,7 +13,7 @@ const activeStyles = mediaMatch
 
 const navigationItems = props => (
   <ul className={styles.NavigationItems}>
-    <NavLink to="/login" activeStyle={activeStyles}>
+    <NavLink to="/" exact activeStyle={activeStyles}>
       Login
     </NavLink>
     <NavLink to="/locker" activeStyle={activeStyles}>

@@ -6,6 +6,10 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 import PostContainer from "../../containers/PostContainer/PostContainer";
 import LoginForm from "../LoginForm/LoginForm";
+import Auth from "../../Auth";
+import Callback from "../Callback/Callback";
+
+const auth = new Auth();
 
 class Layout extends Component {
   state = {
@@ -30,6 +34,15 @@ class Layout extends Component {
   };
 
   render() {
+    let locker = auth.isAuthenticated() ? (
+      <PostContainer
+        togglePostForm={this.postFormToggleHandler}
+        isPostFormShowing={this.state.isPostFormShowing}
+      />
+    ) : (
+      <h1>PAGE NOT FOUND</h1>
+    );
+
     return (
       <div className={styles.Layout}>
         <Toolbar
@@ -40,16 +53,13 @@ class Layout extends Component {
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
         />
-        <Route path="/login" render={() => <LoginForm />} />
         <Route
-          path="/locker"
-          render={() => (
-            <PostContainer
-              togglePostForm={this.postFormToggleHandler}
-              isPostFormShowing={this.state.isPostFormShowing}
-            />
-          )}
+          path="/"
+          exact
+          render={() => !auth.isAuthenticated() && <LoginForm auth={auth} />}
         />
+        <Route path="/locker" render={() => locker} />
+        <Route path="/callback" render={() => <Callback />} />
       </div>
     );
   }
