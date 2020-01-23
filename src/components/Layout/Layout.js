@@ -48,6 +48,7 @@ class Layout extends Component {
         <Toolbar
           drawerToggleClicked={this.sideDrawerToggleHandler}
           isPostFormShowing={this.state.isPostFormShowing}
+          auth={auth}
         />
         <SideDrawer
           open={this.state.showSideDrawer}

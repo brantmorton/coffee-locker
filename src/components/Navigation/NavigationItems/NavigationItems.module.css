@@ -5,6 +5,7 @@
   width: 100%;
   align-items: center;
   padding: 0;
+  
 }
 
 .NavigationItems a {
@@ -14,6 +15,7 @@
   display: block;
   padding: 10px;
   font-size: 1.5rem;
+  line-height: normal;
 }
 
 .NavigationItems a:hover,
@@ -21,6 +23,20 @@
 .NavigationItems a.active {
   color: #40a4c8;
   border-bottom: none;
+}
+
+.LogoutBtn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.LogoutLI {
+  text-decoration: none;
+  list-style-type: none;
+  
 }
 
 @media (min-width: 500px) {
@@ -36,8 +52,8 @@
     color: white;
     height: 100%;
     padding: 16px 10px;
-    
     font-size: 1rem;
+    
   }
 
   .NavigationItems a:hover,
@@ -49,5 +65,10 @@
 
   .NavigationItems {
     flex-flow: row;
+  }
+
+  .LogoutBtn {
+    padding: 16px 10px;
+    box-sizing: border-box;
   }
 }
