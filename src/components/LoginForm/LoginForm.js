@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-//import { Formik, Field, Form } from "formik";
-//import * as Yup from "yup";
-//import TextFormField from "../UI/FormField/FormField";
 import Button from "../../components/UI/Button/Button";
 //import Aux from "../../hoc/Auxilary/Auxilary";
 //import styles from "./LoginForm.module.css";

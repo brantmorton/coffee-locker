@@ -53,6 +53,7 @@ class Layout extends Component {
         <SideDrawer
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
+          auth={auth}
         />
         <Route
           path="/"

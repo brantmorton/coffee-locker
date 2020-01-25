@@ -5,10 +5,11 @@
   width: 100%;
   align-items: center;
   padding: 0;
-  
+  z-index: 2000;
 }
 
-.NavigationItems a {
+.NavigationItems a,
+.LogoutBtn {
   color: #470b53;
   text-decoration: none;
   box-sizing: border-box;
@@ -20,23 +21,25 @@
 
 .NavigationItems a:hover,
 .NavigationItems a:active,
-.NavigationItems a.active {
+.NavigationItems a.active,
+.LogoutBtn:hover,
+.LogoutBtn:active,
+.LogoutBtn.active {
   color: #40a4c8;
   border-bottom: none;
 }
 
 .LogoutBtn {
-  background-color: transparent;
-  color: white;
   border: none;
+  margin: auto;
   cursor: pointer;
-  
+  background-color: transparent;
+  outline: none;
 }
 
 .LogoutLI {
   text-decoration: none;
   list-style-type: none;
-  
 }
 
 @media (min-width: 500px) {
@@ -48,12 +51,12 @@
     align-items: center;
   }
 
-  .NavigationItems a {
+  .NavigationItems a,
+  .LogoutBtn {
     color: white;
     height: 100%;
     padding: 16px 10px;
     font-size: 1rem;
-    
   }
 
   .NavigationItems a:hover,
@@ -70,5 +73,6 @@
   .LogoutBtn {
     padding: 16px 10px;
     box-sizing: border-box;
+    color: white;
   }
 }
