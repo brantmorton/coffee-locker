@@ -38,6 +38,7 @@ class Layout extends Component {
       <PostContainer
         togglePostForm={this.postFormToggleHandler}
         isPostFormShowing={this.state.isPostFormShowing}
+        auth={auth}
       />
     ) : (
       <h1>PAGE NOT FOUND</h1>

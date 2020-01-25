@@ -2,12 +2,13 @@ import React from "react";
 
 import TastingNotes from "../TastingNotes/TastingNotes";
 import StarRatingComponent from "react-star-rating-controlled-component";
-import Button from "../UI/Button/Button"
+import Button from "../UI/Button/Button";
 import styles from "./CoffeePost.module.css";
 
 const coffeePost = props => {
   return (
     <div className={styles.CoffeePost}>
+      <p>Posted by <strong>{props.author}</strong></p>
       <h1>{props.roaster}</h1>
       <p>
         {props.origin} {props.region}
@@ -20,7 +21,13 @@ const coffeePost = props => {
         value={props.starRating}
         editing={false}
       />
-      <Button className={styles.Button} clicked={props.clickDelete} extraStyles="DeleteButton">Delete</Button>
+      <Button
+        className={styles.Button}
+        clicked={props.clickDelete}
+        extraStyles="DeleteButton"
+      >
+        Delete
+      </Button>
     </div>
   );
 };

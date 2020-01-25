@@ -13,6 +13,9 @@ class PostForm extends Component {
     rating: 0
   };
 
+  nickname = this.props.auth.getProfile().nickname || "Unknown User";
+  photo = this.props.auth.getProfile().picture
+
   render() {
     return (
       <Formik
@@ -22,7 +25,9 @@ class PostForm extends Component {
           region: "",
           process: "",
           rating: 0,
-          notes: ""
+          notes: "",
+          author: this.nickname,
+          profilePic: this.photo
         }}
         validationSchema={Yup.object({
           roaster: Yup.string()
@@ -47,8 +52,6 @@ class PostForm extends Component {
               // maybe a more efficient way to do this?
             });
         }}
-        //validateOnBlur={false}
-        //validateOnChange={false}
       >
         <Form className={styles.Form}>
           <div>
@@ -98,7 +101,7 @@ class PostForm extends Component {
             onStarClick={nextValue => this.setState({ rating: nextValue })}
             name="starRating"
           />
-          <div style={{paddingTop: '10px'}}>
+          <div style={{ paddingTop: "10px" }}>
             <Button type="submit">Submit</Button>
             <Button btnType="Danger" clicked={this.props.close}>
               Close

@@ -15,6 +15,7 @@ const coffeePosts = props => {
           process={props.posts[post].process}
           notes={props.posts[post].notes}
           starRating={props.posts[post].rating}
+          author={props.posts[post].author || "none"}
           key={post}
           clickDelete={() => props.delete(post)}
         />

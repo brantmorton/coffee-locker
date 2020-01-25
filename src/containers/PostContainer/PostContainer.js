@@ -6,7 +6,7 @@ import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import styles from "./PostContainer.module.css";
 import Aux from "../../hoc/Auxilary/Auxilary";
-import Modal from "../../components/UI/Modal/Modal"
+import Modal from "../../components/UI/Modal/Modal";
 
 class PostContainer extends Component {
   state = {
@@ -37,7 +37,11 @@ class PostContainer extends Component {
   render() {
     let postForm = (
       <div className={styles.AddButton}>
-        <Fab color="secondary" aria-label="add" onClick={this.props.togglePostForm} >
+        <Fab
+          color="secondary"
+          aria-label="add"
+          onClick={this.props.togglePostForm}
+        >
           <AddIcon />
         </Fab>
       </div>
@@ -47,9 +51,14 @@ class PostContainer extends Component {
         <Aux>
           <Modal
             show={this.props.isPostFormShowing}
-            modalClosed={this.props.togglePostForm} >
-              <PostForm close={this.props.togglePostForm} getPosts={this.getPosts} />
-            </Modal>
+            modalClosed={this.props.togglePostForm}
+          >
+            <PostForm
+              close={this.props.togglePostForm}
+              getPosts={this.getPosts}
+              auth={this.props.auth}
+            />
+          </Modal>
         </Aux>
       );
     }
