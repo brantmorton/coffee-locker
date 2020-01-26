@@ -1,27 +1,31 @@
 .CoffeePost {
-    box-sizing: border-box;
-    margin: 5vh auto;
-    border-radius: 10px;
-    width: 80%;
-    padding: 10px;
-    background-color: #fff;
+  box-sizing: border-box;
+  margin: 5vh auto;
+  border-radius: 10px;
+  width: 80%;
+  padding: 10px;
+  background-color: #fff;
 }
 
 .StarRatingComponent {
-    margin: 15px;
-    vertical-align: middle;
-  }
-  
-.StarRatingComponent label {
-width: auto;
-padding: 0px;
-height: 1.5rem;
+  margin: 15px;
+  vertical-align: middle;
 }
 
+.StarRatingComponent label {
+  width: auto;
+  padding: 0px;
+  height: 1.5rem;
+}
+
+.DatePosted {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+}
 
 @media (min-width: 800px) {
-    .CoffeePost {
-        width: 60%;
-    }
-    
+  .CoffeePost {
+    width: 60%;
+  }
 }

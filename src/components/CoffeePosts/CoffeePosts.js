@@ -16,6 +16,7 @@ const coffeePosts = props => {
           notes={props.posts[post].notes}
           starRating={props.posts[post].rating}
           author={props.posts[post].author || "none"}
+          datePosted={props.posts[post].datePosted}
           key={post}
           clickDelete={() => props.delete(post)}
         />

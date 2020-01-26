@@ -8,7 +8,9 @@ import styles from "./CoffeePost.module.css";
 const coffeePost = props => {
   return (
     <div className={styles.CoffeePost}>
-      <p>Posted by <strong>{props.author}</strong></p>
+      <p>
+        Posted by <strong>{props.author}</strong>
+      </p>
       <h1>{props.roaster}</h1>
       <p>
         {props.origin} {props.region}
@@ -21,6 +23,8 @@ const coffeePost = props => {
         value={props.starRating}
         editing={false}
       />
+      <div></div>
+      <p className={styles.DatePosted}>{props.datePosted}</p>
       <Button
         className={styles.Button}
         clicked={props.clickDelete}

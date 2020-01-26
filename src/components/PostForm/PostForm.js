@@ -8,13 +8,25 @@ import Button from "../../components/UI/Button/Button";
 import styles from "./PostForm.module.css";
 import axios from "axios";
 
+// sets time of post (i.e. January 25, 2020, 6:57 PM)
+const timeOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric"
+};
+
+const today = new Date();
+const dateTime = today.toLocaleString([], timeOptions);
+
 class PostForm extends Component {
   state = {
     rating: 0
   };
 
   nickname = this.props.auth.getProfile().nickname || "Unknown User";
-  photo = this.props.auth.getProfile().picture
+  photo = this.props.auth.getProfile().picture;
 
   render() {
     return (
@@ -27,7 +39,7 @@ class PostForm extends Component {
           rating: 0,
           notes: "",
           author: this.nickname,
-          profilePic: this.photo
+          datePosted: dateTime
         }}
         validationSchema={Yup.object({
           roaster: Yup.string()
