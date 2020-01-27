@@ -7,6 +7,7 @@ import axios from "axios";
 import styles from "./PostContainer.module.css";
 import Aux from "../../hoc/Auxilary/Auxilary";
 import Modal from "../../components/UI/Modal/Modal";
+import Locker from "../../components/Locker/Locker";
 
 class PostContainer extends Component {
   state = {
@@ -63,10 +64,23 @@ class PostContainer extends Component {
       );
     }
 
+    let postsDisplayed = (
+      <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
+    );
+    if (this.props.route === "/locker") {
+      postsDisplayed = (
+        <Locker
+          posts={this.state.posts}
+          delete={this.onDeleteClick}
+          auth={this.props.auth}
+        />
+      );
+    }
+
     return (
       <Aux>
         {postForm}
-        <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
+        {postsDisplayed}
       </Aux>
     );
   }

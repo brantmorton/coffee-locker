@@ -34,11 +34,22 @@ class Layout extends Component {
   };
 
   render() {
+    let feed = auth.isAuthenticated() ? (
+      <PostContainer
+        togglePostForm={this.postFormToggleHandler}
+        isPostFormShowing={this.state.isPostFormShowing}
+        auth={auth}
+      />
+    ) : (
+      <h1>PAGE NOT FOUND</h1>
+    );
+
     let locker = auth.isAuthenticated() ? (
       <PostContainer
         togglePostForm={this.postFormToggleHandler}
         isPostFormShowing={this.state.isPostFormShowing}
         auth={auth}
+        route="/locker"
       />
     ) : (
       <h1>PAGE NOT FOUND</h1>
@@ -61,6 +72,7 @@ class Layout extends Component {
           exact
           render={() => !auth.isAuthenticated() && <LoginForm auth={auth} />}
         />
+        <Route path="/feed" render={() => feed} />
         <Route path="/locker" render={() => locker} />
         <Route path="/callback" render={() => <Callback />} />
       </div>
