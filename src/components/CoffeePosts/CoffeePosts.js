@@ -6,19 +6,21 @@ const coffeePosts = props => {
   let coffeePosts = <p>Loading...</p>;
   if (props.posts) {
     const reversedCoffeePosts = Object.keys(props.posts).reverse();
-    coffeePosts = reversedCoffeePosts.map(post => {
+    coffeePosts = reversedCoffeePosts.map(postKey => {
+      const eachPost = props.posts[postKey]
       return (
         <CoffeePost
-          roaster={props.posts[post].roaster}
-          origin={props.posts[post].origin}
-          region={props.posts[post].region}
-          process={props.posts[post].process}
-          notes={props.posts[post].notes}
-          starRating={props.posts[post].rating}
-          author={props.posts[post].author || "none"}
-          datePosted={props.posts[post].datePosted}
-          key={post}
-          clickDelete={() => props.delete(post)}
+          roaster={eachPost.roaster}
+          origin={eachPost.origin}
+          region={eachPost.region}
+          process={eachPost.process}
+          notes={eachPost.notes}
+          starRating={eachPost.rating}
+          author={eachPost.author || "none"}
+          datePosted={eachPost.datePosted}
+          key={postKey}
+          // this logic allows posts to be deleted in 'feed' and 'locker'
+          clickDelete={() => props.delete(eachPost.id || postKey)}
         />
       );
     });

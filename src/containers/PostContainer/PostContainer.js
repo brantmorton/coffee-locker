@@ -27,6 +27,7 @@ class PostContainer extends Component {
   };
 
   onDeleteClick = id => {
+    console.log(id);
     axios
       .delete("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
       .then(response => {
