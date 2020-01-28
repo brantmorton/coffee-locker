@@ -66,7 +66,7 @@ class PostContainer extends Component {
     }
 
     let postsDisplayed = (
-      <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
+      <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} auth={this.props.auth} />
     );
     if (this.props.route === "/locker") {
       postsDisplayed = (

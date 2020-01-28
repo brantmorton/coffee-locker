@@ -6,6 +6,8 @@ import Button from "../UI/Button/Button";
 import styles from "./CoffeePost.module.css";
 
 const coffeePost = props => {
+  const user = props.auth.getProfile().nickname;
+
   return (
     <div className={styles.CoffeePost}>
       <p>
@@ -25,13 +27,16 @@ const coffeePost = props => {
       />
       <div></div>
       <p className={styles.DatePosted}>{props.datePosted}</p>
-      <Button
-        className={styles.Button}
-        clicked={props.clickDelete}
-        extraStyles="DeleteButton"
-      >
-        Delete
-      </Button>
+
+      {props.author === user && (
+        <Button
+          className={styles.Button}
+          clicked={props.clickDelete}
+          extraStyles="DeleteButton"
+        >
+          Delete
+        </Button>
+      )}
     </div>
   );
 };

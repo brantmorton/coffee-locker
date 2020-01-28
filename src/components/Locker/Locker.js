@@ -18,7 +18,7 @@ const locker = props => {
     // maps keys back into an object
     const mappedPosts = filteredPosts.map(postKey => posts[postKey]);
     
-    coffeePosts = <CoffeePosts posts={mappedPosts} delete={props.delete} />;
+    coffeePosts = <CoffeePosts posts={mappedPosts} delete={props.delete} auth={props.auth} />;
   }
   return coffeePosts;
 };
