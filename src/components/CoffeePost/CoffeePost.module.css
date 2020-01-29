@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap");
 .CoffeePost {
   box-sizing: border-box;
   margin: 5vh auto;
@@ -7,6 +8,11 @@
   background-color: #fff;
   box-shadow: -8px -8px 8px 0 rgba(218, 224, 231, 1),
     8px 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.CoffeePost h1 {
+  font-weight: 500;
+  font-family: "DM Serif Display", serif;
 }
 
 .StarRatingComponent {

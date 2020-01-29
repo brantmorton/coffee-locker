@@ -1,11 +1,21 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap");
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap'); */
+
 .Logo {
-  background-color: white;
-  padding: 8px;
+  
+  background-color: transparent;
+  color: white;
+  font-family: "DM Serif Display", serif;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 5px;
+  font-weight: light;
+  line-height: 0;
 }
 
-.Logo img {
-  height: 100%;
+.Coffee {
+  margin: 12px auto auto auto;
+}
+
+.Locker {
+  left: 10px;
 }
