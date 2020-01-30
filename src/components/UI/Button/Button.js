@@ -7,6 +7,7 @@ const button = props => (
     className={[styles.Button, styles[props.btnType], styles[props.extraStyles]].join(" ")}
     onClick={props.clicked}
     type={props.type}
+    data-testid="button"
   >
     {props.children}
   </button>

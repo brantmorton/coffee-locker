@@ -4,15 +4,8 @@ import { NavLink } from "react-router-dom";
 import styles from "./NavigationItems.module.css";
 import Auth from "../../../Auth";
 
-// this makes active styling responsive
-const mediaMatch = window.matchMedia("(min-width: 500px)").matches;
-const activeStyles = mediaMatch
-  ? {
-      borderBottom: "4px solid #40a4c8"
-    }
-  : null;
-
 const auth = new Auth();
+const activeStyle = {borderBottom: "4px solid #40a4c8"}
 
 const navigationItems = props =>
   auth.isAuthenticated() ? (
@@ -22,16 +15,16 @@ const navigationItems = props =>
           Log Out
         </button>
       </li>
-      <NavLink to="/locker" activeStyle={activeStyles}>
+      <NavLink to="/locker" activeStyle={activeStyle}>
         My Locker
       </NavLink>
-      <NavLink to="/feed" activeStyle={activeStyles}>
+      <NavLink to="/feed" activeStyle={activeStyle}>
         Feed
       </NavLink>
     </ul>
   ) : (
     <ul className={styles.NavigationItems}>
-      <NavLink to="/" exact activeStyle={activeStyles}>
+      <NavLink to="/" exact activeStyle={activeStyle}>
         Login
       </NavLink>
     </ul>
