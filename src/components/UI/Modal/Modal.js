@@ -15,8 +15,9 @@ class Modal extends Component {
   render() {
     return (
       <Aux>
-        <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
+        <Backdrop data-testid="backdrop" show={this.props.show} clicked={this.props.modalClosed} />
         <div
+          data-testid="modal"
           className={styles.Modal}
           style={{
             transform: this.props.show ? "translateY(0)" : "translateY(-100vh)",
