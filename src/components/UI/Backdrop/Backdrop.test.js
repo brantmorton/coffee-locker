@@ -21,3 +21,11 @@ it("doesn't render without show prop", () => {
   const { queryByTestId } = render(<Backdrop />);
   expect(queryByTestId("backdrop")).toBeNull()
 })
+
+it("triggers on click", () => {
+  const clickEvent = jest.fn();
+
+  const { getByTestId } = render(<Backdrop show clicked={clickEvent} />);
+  fireEvent.click(getByTestId("backdrop"));
+  expect(clickEvent).toHaveBeenCalled();
+});
