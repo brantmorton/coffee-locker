@@ -5,7 +5,6 @@ import styles from "./NavigationItems.module.css";
 import Auth from "../../../Auth";
 
 const auth = new Auth();
-const activeStyle = {borderBottom: "4px solid #40a4c8"}
 
 const navigationItems = props =>
   auth.isAuthenticated() ? (
@@ -15,16 +14,16 @@ const navigationItems = props =>
           Log Out
         </button>
       </li>
-      <NavLink to="/locker" activeStyle={activeStyle}>
+      <NavLink to="/locker" activeClassName={styles.selected} exact>
         My Locker
       </NavLink>
-      <NavLink to="/feed" activeStyle={activeStyle}>
+      <NavLink to="/feed" activeClassName={styles.selected} exact>
         Feed
       </NavLink>
     </ul>
   ) : (
     <ul className={styles.NavigationItems}>
-      <NavLink to="/" exact activeStyle={activeStyle}>
+      <NavLink to="/" exact activeClassName={styles.selected}>
         Login
       </NavLink>
     </ul>

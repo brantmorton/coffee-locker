@@ -19,16 +19,6 @@
   line-height: normal;
 }
 
-.NavigationItems a:hover,
-.NavigationItems a:active,
-.NavigationItems a.active,
-.LogoutBtn:hover,
-.LogoutBtn:active,
-.LogoutBtn.active {
-  color: #40a4c8;
-  border-bottom: none;
-}
-
 .LogoutBtn {
   border: none;
   margin: auto;
@@ -40,6 +30,11 @@
 .LogoutLI {
   text-decoration: none;
   list-style-type: none;
+}
+
+.NavigationItems a.selected {
+  color: #40a4c8;
+  border-bottom: none;
 }
 
 @media (min-width: 500px) {
@@ -60,7 +55,8 @@
   }
 
   .NavigationItems a:hover,
-  .NavigationItems a.active {
+  .NavigationItems a.selected,
+  .LogoutBtn:hover {
     background-color: #470b53;
     border-bottom: 4px solid #40a4c8;
     color: white;
