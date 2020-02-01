@@ -44,7 +44,7 @@ class PostForm extends Component {
         validationSchema={Yup.object({
           roaster: Yup.string()
             .required()
-            .max(20),
+            .max(40),
           origin: Yup.string()
             .required()
             .max(20),

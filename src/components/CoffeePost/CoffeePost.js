@@ -13,11 +13,11 @@ const coffeePost = props => {
       <p>
         Posted by <strong>{props.author}</strong>
       </p>
-      <h1>{props.roaster}</h1>
+      <h2>{props.roaster}</h2>
       <p>
         {props.origin} {props.region}
       </p>
-      <p>Process: {props.process}</p>
+      <p>{props.process} Process</p>
       <TastingNotes notes={props.notes} />
       <StarRatingComponent
         className={styles.StarRatingComponent}
