@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup, fireEvent, waitForElementToBeRemoved, queryByTestId } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 afterEach(cleanup);
@@ -19,13 +19,17 @@ it("renders correctly", () => {
 
 it("doesn't render without show prop", () => {
   const { queryByTestId } = render(<Backdrop />);
-  expect(queryByTestId("backdrop")).toBeNull()
-})
+  expect(queryByTestId("backdrop")).toBeNull();
+});
 
-it("triggers on click", () => {
+it("triggers on click", async () => {
   const clickEvent = jest.fn();
 
   const { getByTestId } = render(<Backdrop show clicked={clickEvent} />);
+  expect(getByTestId("backdrop")).toBeVisible();
   fireEvent.click(getByTestId("backdrop"));
+
+  await waitForElementToBeRemoved(() => queryByTestId('backdrop'))
+  // expect(getByTestId("backdrop")).not.toBeVisible();
   expect(clickEvent).toHaveBeenCalled();
 });

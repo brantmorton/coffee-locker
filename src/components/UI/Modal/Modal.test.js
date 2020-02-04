@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Modal from "./Modal";
 
-import { render, cleanup, getByTestId, fireEvent, waitForElement } from "@testing-library/react";
+import { render, cleanup, getByTestId, fireEvent, container } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 afterEach(cleanup);
@@ -22,11 +22,14 @@ it("is visible when props.show exists", () => {
   expect(getByTestId("modal")).toBeVisible()
 })
 
-// it("closes modal when backdrop is clicked", () => {
-//   const clickEvent = jest.fn()
-//   const { getByTestId } = render(<Modal show modalClosed={clickEvent}>Test</Modal>)
+// it("closes modal when backdrop is clicked",  () => {
+//   const handleClose = jest.fn()
+//   const { getByTestId } = render(<Modal show>Test</Modal>)
 //   expect(getByTestId("modal")).toBeVisible()
 
-//   fireEvent.click(getByTestId("backdrop"))
+//   const backdrop = getByTestId("backdrop")
+//   expect(getByTestId("backdrop")).toBeVisible()
+//   fireEvent.click(backdrop)
+
 //   expect(getByTestId("modal")).not.toBeVisible()
 // })
