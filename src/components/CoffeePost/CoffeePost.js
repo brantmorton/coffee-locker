@@ -9,17 +9,18 @@ const coffeePost = props => {
   const user = props.auth.getProfile().nickname;
 
   return (
-    <div className={styles.CoffeePost}>
-      <p>
+    <div className={styles.CoffeePost} data-testid="post">
+      <p data-testid="author">
         Posted by <strong>{props.author}</strong>
       </p>
-      <h2>{props.roaster}</h2>
+      <h2 data-testid="roaster">{props.roaster}</h2>
       <p>
         {props.origin} {props.region}
       </p>
       <p>{props.process} Process</p>
       <TastingNotes notes={props.notes} />
       <StarRatingComponent
+        data-testid="starRating"
         className={styles.StarRatingComponent}
         name="showRating"
         value={props.starRating}
@@ -28,15 +29,16 @@ const coffeePost = props => {
       <div></div>
       <p className={styles.DatePosted}>{props.datePosted}</p>
 
-      {props.author === user && (
-        <Button
-          className={styles.Button}
-          clicked={props.clickDelete}
-          extraStyles="DeleteButton"
-        >
-          Delete
-        </Button>
-      )}
+      {props.author === user ||
+        (props.author === props.testUser && (
+          <Button
+            className={styles.Button}
+            clicked={props.clickDelete}
+            extraStyles="DeleteButton"
+          >
+            Delete
+          </Button>
+        ))}
     </div>
   );
 };
