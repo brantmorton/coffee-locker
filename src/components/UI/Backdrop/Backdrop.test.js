@@ -22,14 +22,12 @@ it("doesn't render without show prop", () => {
   expect(queryByTestId("backdrop")).toBeNull();
 });
 
-it("triggers on click", async () => {
+it("click event is heard after render", () => {
   const clickEvent = jest.fn();
 
   const { getByTestId } = render(<Backdrop show clicked={clickEvent} />);
   expect(getByTestId("backdrop")).toBeVisible();
   fireEvent.click(getByTestId("backdrop"));
 
-  await waitForElementToBeRemoved(() => queryByTestId('backdrop'))
-  // expect(getByTestId("backdrop")).not.toBeVisible();
   expect(clickEvent).toHaveBeenCalled();
 });
