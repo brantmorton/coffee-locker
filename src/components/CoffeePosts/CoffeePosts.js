@@ -10,6 +10,7 @@ const coffeePosts = props => {
       const eachPost = props.posts[postKey];
       return (
         <CoffeePost
+          data-testid="post"
           roaster={eachPost.roaster}
           origin={eachPost.origin}
           region={eachPost.region}
