@@ -6,9 +6,7 @@ import Auth from "../../Auth";
 import {
   render,
   cleanup,
-  getByTestId,
-  fireEvent,
-  container
+  getByTestId
 } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
