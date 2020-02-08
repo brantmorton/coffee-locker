@@ -21,19 +21,21 @@ class PostContainer extends Component {
   getPosts = () => {
     axios
       .get("https://coffee-locker.firebaseio.com/posts.json")
-      .then(response => this.setState({ posts: response.data }));
-
-    // set up error handling
+      .then(response => this.setState({ posts: response.data }))
+      .catch(error => {
+        console.log(JSON.stringify(error));
+      });
   };
 
   onDeleteClick = id => {
-    console.log(id);
     axios
       .delete("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
       .then(response => {
         this.getPosts();
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error));
       });
-    // set up error handling
   };
 
   render() {
@@ -66,7 +68,11 @@ class PostContainer extends Component {
     }
 
     let postsDisplayed = (
-      <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} auth={this.props.auth} />
+      <CoffeePosts
+        posts={this.state.posts}
+        delete={this.onDeleteClick}
+        auth={this.props.auth}
+      />
     );
     if (this.props.route === "/locker") {
       postsDisplayed = (
