@@ -34,7 +34,7 @@ class Layout extends Component {
   };
 
   render() {
-    let feed = auth.isAuthenticated() ? (
+    let feed = (auth.isAuthenticated() || this.props.testAuth) ? (
       <PostContainer
         togglePostForm={this.postFormToggleHandler}
         isPostFormShowing={this.state.isPostFormShowing}
@@ -44,7 +44,7 @@ class Layout extends Component {
       <h1>PAGE NOT FOUND</h1>
     );
 
-    let locker = auth.isAuthenticated() ? (
+    let locker = (auth.isAuthenticated() || this.props.testAuth) ? (
       <PostContainer
         togglePostForm={this.postFormToggleHandler}
         isPostFormShowing={this.state.isPostFormShowing}
@@ -57,6 +57,7 @@ class Layout extends Component {
 
     return (
       <div className={styles.Layout}>
+        
         <Toolbar
           drawerToggleClicked={this.sideDrawerToggleHandler}
           isPostFormShowing={this.state.isPostFormShowing}
@@ -67,6 +68,7 @@ class Layout extends Component {
           closed={this.sideDrawerClosedHandler}
           auth={auth}
         />
+        {/* will render login form at '/' if user is not logged in */}
         <Route
           path="/"
           exact

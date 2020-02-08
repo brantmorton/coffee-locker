@@ -29,8 +29,8 @@ const coffeePost = props => {
       <div></div>
       <p className={styles.DatePosted}>{props.datePosted}</p>
 
-      {props.author === user ||
-        (props.author === props.testUser && (
+      {(props.author === user ||
+        props.author === props.testUser) && (
           <Button
             className={styles.Button}
             clicked={props.clickDelete}
@@ -38,7 +38,7 @@ const coffeePost = props => {
           >
             Delete
           </Button>
-        ))}
+        )}
     </div>
   );
 };

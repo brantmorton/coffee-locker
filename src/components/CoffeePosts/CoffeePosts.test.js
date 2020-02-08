@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import CoffeePosts from "./CoffeePosts";
 import Auth from "../../Auth";
 
-import { render, cleanup, getByTestId } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 const auth = new Auth();
