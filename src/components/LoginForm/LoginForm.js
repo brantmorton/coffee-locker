@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 import Button from "../../components/UI/Button/Button";
-//import Aux from "../../hoc/Auxilary/Auxilary";
-//import styles from "./LoginForm.module.css";
 
 class LoginForm extends Component {
   render() {

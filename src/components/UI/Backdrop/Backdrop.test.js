@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 
-import { render, cleanup, fireEvent, waitForElementToBeRemoved, queryByTestId } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 afterEach(cleanup);

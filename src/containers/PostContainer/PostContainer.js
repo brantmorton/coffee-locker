@@ -15,15 +15,25 @@ class PostContainer extends Component {
   };
 
   componentDidMount() {
+    this._mounted = true;
     this.getPosts();
+  }
+
+  // prevents from setting state if the component is no longer mounted
+  componentWillUnmount() {
+    this._mounted = false;
   }
 
   getPosts = () => {
     axios
       .get("https://coffee-locker.firebaseio.com/posts.json")
-      .then(response => this.setState({ posts: response.data }))
+      .then(response => {
+        if (this._mounted) {
+          this.setState({ posts: response.data });
+        }
+      })
       .catch(error => {
-        console.log(JSON.stringify(error));
+        console.log(error.message);
       });
   };
 
@@ -34,7 +44,7 @@ class PostContainer extends Component {
         this.getPosts();
       })
       .catch(error => {
-        console.log(JSON.stringify(error));
+        console.log(error.message);
       });
   };
 

@@ -27,15 +27,14 @@ it("shows Page Not Found when user is not authenticated", () => {
   expect(getByText("PAGE NOT FOUND")).toBeVisible();
 });
 
-it("shows PostContainer when user is authenticated", () => {
-  const { getByText, queryByText } = render(
-    <MemoryRouter initialEntries={["/feed"]}>
-      <Layout testAuth />
-    </MemoryRouter>
-  );
-  expect(getByText("Loading...")).toBeVisible();
-  expect(queryByText("PAGE NOT FOUND")).toBeFalsy();
-});
+// it("shows PostContainer when user is authenticated", () => {
+//   const { getByText } = render(
+//     <MemoryRouter initialEntries={["/feed"]}>
+//       <Layout testAuth />
+//     </MemoryRouter>
+//   );
+//   expect(getByText("Loading...")).toBeVisible();
+// });
 
 it("prompts user to login at home page if user is not logged in", () => {
   const { getByText } = render(
@@ -57,11 +56,10 @@ it("displays toolbar (navbar and side drawer)", () => {
 });
 
 it("shows locker when navigated to '/locker'", () => {
-  const { getByText, queryByText } = render(
+  const { getByText } = render(
     <MemoryRouter initialEntries={["/locker"]}>
       <Layout testAuth />
     </MemoryRouter>
   );
   expect(getByText("Loading...")).toBeVisible();
-  expect(queryByText("PAGE NOT FOUND")).toBeFalsy();
 });
