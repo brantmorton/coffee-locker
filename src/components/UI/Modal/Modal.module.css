@@ -8,9 +8,11 @@
   box-shadow: 1px 1px 1px black;
   padding: 16px;
   left: 10%;
-  top: 8%;
+  top: 2%;
   box-sizing: border-box;
   transition: all 0.3s ease-out;
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 @media (min-width: 600px) {

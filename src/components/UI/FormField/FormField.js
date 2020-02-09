@@ -2,11 +2,7 @@ import { getIn } from "formik";
 import React from "react";
 import { TextField } from "@material-ui/core";
 
-const TextFormField = ({
-  field,
-  form,
-  ...props
-}) => {
+const TextFormField = ({ field, form, ...props }) => {
   const errorText =
     getIn(form.touched, field.name) && getIn(form.errors, field.name);
 
@@ -22,6 +18,6 @@ const TextFormField = ({
   );
 };
 
-export default TextFormField
+export default TextFormField;
 
 // borrowed from Ben Awad - "React Form Best Practices"

@@ -50,6 +50,7 @@ class PostContainer extends Component {
 
   render() {
     let postForm = (
+      // this is the Material-UI new post button
       <div className={styles.AddButton}>
         <Fab
           color="secondary"
