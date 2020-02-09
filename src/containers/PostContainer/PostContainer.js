@@ -84,6 +84,7 @@ class PostContainer extends Component {
         auth={this.props.auth}
       />
     );
+    // this filters between locker and feed
     if (this.props.route === "/locker") {
       postsDisplayed = (
         <Locker
