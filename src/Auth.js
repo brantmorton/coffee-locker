@@ -29,11 +29,11 @@ export default class Auth {
         localStorage.setItem("access_token", authResults.accessToken);
         localStorage.setItem("id_token", authResults.idToken);
         localStorage.setItem("expires_at", expiresAt);
-      //   location.hash = "";
-      //   location.pathname = LOGIN_SUCCESS_PAGE;
-      // } else {
-      //   location.pathname = LOGIN_FAILURE_PAGE;
-      //   console.log(err);
+        location.hash = "";
+        location.pathname = LOGIN_SUCCESS_PAGE;
+      } else {
+        location.pathname = LOGIN_FAILURE_PAGE;
+        console.log(err);
       }
     });
   };
