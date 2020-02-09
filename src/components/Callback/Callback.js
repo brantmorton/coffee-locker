@@ -4,7 +4,7 @@ import Auth from '../../Auth'
 class Callback extends Component {
   componentDidMount() {
     const auth = new Auth();
-    auth.handleAuthentication()
+    //auth.handleAuthentication()
   }
 
   render() {
