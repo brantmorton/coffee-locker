@@ -9,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "coffee-locker.auth0.com",
     clientID: "F7msHctHVz5RyNH0RCN8G5e7FiKEhlHI",
-    redirectUri: "https://gifted-bohr-05a08d.netlify.com/callback",
+    redirectUri: "http://mycoffeelocker.com/callback",
     //redirectUri: "http://localhost:3000/callback",
     audience: "https://coffee-locker.auth0.com/userinfo",
     responseType: "token id_token",
