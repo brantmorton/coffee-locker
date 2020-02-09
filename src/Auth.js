@@ -9,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "coffee-locker.auth0.com",
     clientID: "F7msHctHVz5RyNH0RCN8G5e7FiKEhlHI",
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri: "https://gifted-bohr-05a08d.netlify.com/callback",
     audience: "https://coffee-locker.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile"
@@ -29,11 +29,11 @@ export default class Auth {
         localStorage.setItem("access_token", authResults.accessToken);
         localStorage.setItem("id_token", authResults.idToken);
         localStorage.setItem("expires_at", expiresAt);
-        location.hash = "";
-        location.pathname = LOGIN_SUCCESS_PAGE;
-      } else {
-        location.pathname = LOGIN_FAILURE_PAGE;
-        console.log(err);
+      //   location.hash = "";
+      //   location.pathname = LOGIN_SUCCESS_PAGE;
+      // } else {
+      //   location.pathname = LOGIN_FAILURE_PAGE;
+      //   console.log(err);
       }
     });
   };
