@@ -8,6 +8,7 @@ import styles from "./PostContainer.module.css";
 import Aux from "../../hoc/Auxilary/Auxilary";
 import Modal from "../../components/UI/Modal/Modal";
 import Locker from "../../components/Locker/Locker";
+import { Route } from "react-router-dom";
 
 class PostContainer extends Component {
   state = {
@@ -25,16 +26,18 @@ class PostContainer extends Component {
   }
 
   getPosts = () => {
-    axios
-      .get("https://coffee-locker.firebaseio.com/posts.json")
-      .then(response => {
-        if (this._mounted) {
-          this.setState({ posts: response.data });
-        }
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+    if (this.props.route !== "/locker") {
+      axios
+        .get("https://coffee-locker.firebaseio.com/posts.json")
+        .then(response => {
+          if (this._mounted) {
+            this.setState({ posts: response.data });
+          }
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    }
   };
 
   onDeleteClick = id => {
@@ -61,6 +64,7 @@ class PostContainer extends Component {
         </Fab>
       </div>
     );
+
     if (this.props.isPostFormShowing) {
       postForm = (
         <Aux>
@@ -78,28 +82,27 @@ class PostContainer extends Component {
       );
     }
 
-    let postsDisplayed = (
+    let feedPage = (
       <CoffeePosts
         posts={this.state.posts}
         delete={this.onDeleteClick}
         auth={this.props.auth}
       />
     );
-    // this filters between locker and feed
-    if (this.props.route === "/locker") {
-      postsDisplayed = (
-        <Locker
-          posts={this.state.posts}
-          delete={this.onDeleteClick}
-          auth={this.props.auth}
-        />
-      );
-    }
+
+    const lockerPage = (
+      <Locker
+        posts={this.state.posts}
+        delete={this.onDeleteClick}
+        auth={this.props.auth}
+      />
+    );
 
     return (
       <Aux>
         {postForm}
-        {postsDisplayed}
+        <Route path="/feed" render={() => feedPage} />
+        <Route path="/locker" render={() => lockerPage} />
       </Aux>
     );
   }

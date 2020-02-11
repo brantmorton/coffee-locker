@@ -2,7 +2,7 @@ import React from "react";
 import CoffeePosts from "../CoffeePosts/CoffeePosts";
 
 const locker = props => {
-  let coffeePosts = <p>Loading...</p>;
+  let coffeePosts = null;
 
   if (props.posts) {
     const postKeys = Object.keys(props.posts);
@@ -29,7 +29,7 @@ const locker = props => {
         auth={props.auth}
       />
     );
-  }
+  } 
   return coffeePosts;
 };
 

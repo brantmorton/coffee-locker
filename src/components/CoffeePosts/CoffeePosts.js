@@ -3,7 +3,7 @@ import React from "react";
 import CoffeePost from "../CoffeePost/CoffeePost";
 
 const coffeePosts = props => {
-  let coffeePosts = <p>Loading...</p>;
+  let coffeePosts = null;
   if (props.posts) {
     const reversedCoffeePosts = Object.keys(props.posts).reverse();
     coffeePosts = reversedCoffeePosts.map(postKey => {
