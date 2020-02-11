@@ -12,7 +12,7 @@ import { Route } from "react-router-dom";
 
 class PostContainer extends Component {
   state = {
-    posts: null
+    posts: this.props.testPosts
   };
 
   componentDidMount() {
@@ -82,7 +82,7 @@ class PostContainer extends Component {
       );
     }
 
-    let feedPage = (
+    const feedPage = (
       <CoffeePosts
         posts={this.state.posts}
         delete={this.onDeleteClick}

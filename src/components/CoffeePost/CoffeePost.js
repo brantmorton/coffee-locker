@@ -29,16 +29,15 @@ const coffeePost = props => {
       <div></div>
       <p className={styles.DatePosted}>{props.datePosted}</p>
 
-      {(props.author === user ||
-        props.author === props.testUser) && (
-          <Button
-            className={styles.Button}
-            clicked={props.clickDelete}
-            extraStyles="DeleteButton"
-          >
-            Delete
-          </Button>
-        )}
+      {(props.author === user || props.author === props.testUser) && (
+        <Button
+          className={styles.Button}
+          clicked={props.clickDelete}
+          extraStyles="DeleteButton"
+        >
+          Delete
+        </Button>
+      )}
     </div>
   );
 };

@@ -20,16 +20,24 @@ const locker = props => {
         posts[postKey].author === props.testUser
     );
     // maps keys back into an object
-    const mappedPosts = filteredPosts.map(postKey => posts[postKey]);
+    let mappedPosts = filteredPosts.map(postKey => posts[postKey]);
 
-    coffeePosts = (
-      <CoffeePosts
-        posts={mappedPosts}
-        delete={props.delete}
-        auth={props.auth}
-      />
-    );
-  } 
+    if (mappedPosts.length > 0) {
+      coffeePosts = (
+        <div>
+          <CoffeePosts
+            posts={mappedPosts}
+            delete={props.delete}
+            auth={props.auth}
+          />
+        </div>
+      );
+    } else {
+      coffeePosts = (
+        <CoffeePosts empty />
+      );
+    }
+  }
   return coffeePosts;
 };
 

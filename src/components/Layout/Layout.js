@@ -36,6 +36,11 @@ class Layout extends Component {
   render() {
     return (
       <div className={styles.Layout}>
+        <Toolbar
+          drawerToggleClicked={this.sideDrawerToggleHandler}
+          isPostFormShowing={this.state.isPostFormShowing}
+          auth={auth}
+        />
         {/* this route is the authentication callback */}
         <Route path="/callback" render={() => <Callback />} />
         {/* will render login form at '/' if user is not logged in */}
@@ -43,11 +48,6 @@ class Layout extends Component {
           path="/"
           exact
           render={() => !auth.isAuthenticated() && <LoginForm auth={auth} />}
-        />
-        <Toolbar
-          drawerToggleClicked={this.sideDrawerToggleHandler}
-          isPostFormShowing={this.state.isPostFormShowing}
-          auth={auth}
         />
         <SideDrawer
           open={this.state.showSideDrawer}

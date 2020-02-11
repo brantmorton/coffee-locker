@@ -45,20 +45,30 @@ it("fetches data", async () => {
   expect(resolvedPosts).toHaveLength(3);
 });
 
-// it("shows locker when navigated to '/locker'", () => {
-//   const { getByText } = render(
-//     <MemoryRouter initialEntries={["/locker"]}>
-//       <PostContainer testAuth />
-//     </MemoryRouter>
-//   );
-//   expect(getByText("Loading...")).toBeVisible();
-// });
+it("shows locker when navigated to '/locker'", () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={["/locker"]}>
+      <PostContainer
+        auth={auth}
+        testPosts={{
+          1: { roaster: "test", origin: "origin" }
+        }}
+      />
+    </MemoryRouter>
+  );
+  expect(getByText("test")).toBeVisible();
+});
 
-// it("shows feed when user navigates to /feed", () => {
-//   const { getAllByText } = render(
-//     <MemoryRouter initialEntries={["/feed"]}>
-//       <PostContainer />
-//     </MemoryRouter>
-//   );
-//   expect(getAllByText("Process")).toBeVisible();
-// });
+it("shows locker when navigated to '/feed'", () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={["/feed"]}>
+      <PostContainer
+        auth={auth}
+        testPosts={{
+          1: { roaster: "TEST1", origin: "origin" }
+        }}
+      />
+    </MemoryRouter>
+  );
+  expect(getByText("TEST1")).toBeVisible();
+});

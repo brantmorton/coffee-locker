@@ -28,7 +28,7 @@ it("renders all posts", () => {
   expect(getAllByTestId("post")).toHaveLength(2);
 });
 
-// it("shows 'Loading...' if there are no available posts", () => {
-//   const { getByText } = render(<CoffeePosts auth={auth} />);
-//   expect(getByText("Loading...")).toBeVisible();
-// });
+it("shows landing page if there are no available posts in locker", () => {
+  const { getByText } = render(<CoffeePosts empty auth={auth} />);
+  expect(getByText("please add a post!")).toBeVisible();
+});

@@ -3,10 +3,11 @@ import React from "react";
 import CoffeePost from "../CoffeePost/CoffeePost";
 
 const coffeePosts = props => {
-  let coffeePosts = null;
-  if (props.posts) {
+  let displayedPosts = null;
+
+  if (props.posts && !props.empty) {
     const reversedCoffeePosts = Object.keys(props.posts).reverse();
-    coffeePosts = reversedCoffeePosts.map(postKey => {
+    displayedPosts = reversedCoffeePosts.map(postKey => {
       const eachPost = props.posts[postKey];
       return (
         <CoffeePost
@@ -28,7 +29,15 @@ const coffeePosts = props => {
     });
   }
 
-  return <div>{coffeePosts}</div>;
+  if (props.empty) {
+    displayedPosts = (
+      <div>
+        <h3>It looks like your locker is empty,</h3>
+        <h3>please add a post!</h3>
+      </div>
+    );
+  }
+  return <div>{displayedPosts}</div>;
 };
 
 export default coffeePosts;
