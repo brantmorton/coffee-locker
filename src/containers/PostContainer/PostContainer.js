@@ -52,7 +52,7 @@ class PostContainer extends Component {
   };
 
   render() {
-    let postForm = (
+    let newPostForm = (
       // this is the Material-UI new post button
       <div className={styles.AddButton}>
         <Fab
@@ -66,7 +66,7 @@ class PostContainer extends Component {
     );
 
     if (this.props.isPostFormShowing) {
-      postForm = (
+      newPostForm = (
         <Aux>
           <Modal
             show={this.props.isPostFormShowing}
@@ -83,24 +83,29 @@ class PostContainer extends Component {
     }
 
     const feedPage = (
-      <CoffeePosts
-        posts={this.state.posts}
-        delete={this.onDeleteClick}
-        auth={this.props.auth}
-      />
+      <Aux>
+        {this.props.auth.isAuthenticated() ? newPostForm : null}
+        <CoffeePosts
+          posts={this.state.posts}
+          delete={this.onDeleteClick}
+          auth={this.props.auth}
+        />
+      </Aux>
     );
 
     const lockerPage = (
-      <Locker
-        posts={this.state.posts}
-        delete={this.onDeleteClick}
-        auth={this.props.auth}
-      />
+      <Aux>
+        {newPostForm}
+        <Locker
+          posts={this.state.posts}
+          delete={this.onDeleteClick}
+          auth={this.props.auth}
+        />
+      </Aux>
     );
 
     return (
       <Aux>
-        {postForm}
         <Route path="/feed" render={() => feedPage} />
         <Route path="/locker" render={() => lockerPage} />
       </Aux>
