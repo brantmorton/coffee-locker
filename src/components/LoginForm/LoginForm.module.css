@@ -1,3 +1,15 @@
-.Form {
-    margin: auto;
+.welcomeText {
+  font-size: 2.5rem;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.loginImage {
+  height: 35vh;
+}
+
+@media (min-width: 800px) {
+  .welcomeText {
+    line-height: 0;
   }
+}
