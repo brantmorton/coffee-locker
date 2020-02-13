@@ -6,11 +6,14 @@ const LOGIN_SUCCESS_PAGE = "/feed";
 const LOGIN_FAILURE_PAGE = "/";
 
 export default class Auth {
+  callbackUrl = location.hostname.includes("local")
+    ? "http://localhost:3000/callback"
+    : "http://mycoffeelocker.com/callback";
+
   auth0 = new auth0.WebAuth({
     domain: "coffee-locker.auth0.com",
     clientID: "F7msHctHVz5RyNH0RCN8G5e7FiKEhlHI",
-    redirectUri: "http://mycoffeelocker.com/callback",
-    //redirectUri: "http://localhost:3000/callback",
+    redirectUri: this.callbackUrl,
     audience: "https://coffee-locker.auth0.com/userinfo",
     responseType: "token id_token",
     scope: "openid profile"

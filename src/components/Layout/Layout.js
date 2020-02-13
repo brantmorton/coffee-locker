@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
@@ -47,7 +47,13 @@ class Layout extends Component {
         <Route
           path="/"
           exact
-          render={() => !auth.isAuthenticated() && <LoginForm auth={auth} />}
+          render={() =>
+            auth.isAuthenticated() ? (
+              <Redirect to={"/feed"} />
+            ) : (
+              <LoginForm auth={auth} />
+            )
+          }
         />
         <SideDrawer
           open={this.state.showSideDrawer}
