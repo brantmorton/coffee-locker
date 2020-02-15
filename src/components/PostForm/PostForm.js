@@ -51,7 +51,7 @@ class PostForm extends Component {
           region: Yup.string().max(20),
           process: Yup.string().max(20),
           rating: Yup.number().required(),
-          notes: Yup.string().max(40)
+          notes: Yup.string().max(100)
         })}
         onSubmit={(values, { setSubmitting }) => {
           values.rating = this.state.rating;
