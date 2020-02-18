@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux"
+
 import CoffeePosts from "../CoffeePosts/CoffeePosts";
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps"
 
 const locker = props => {
   let coffeePosts = null;
@@ -28,7 +31,6 @@ const locker = props => {
           <CoffeePosts
             posts={mappedPosts}
             delete={props.delete}
-            auth={props.auth}
           />
         </div>
       );
@@ -41,4 +43,4 @@ const locker = props => {
   return coffeePosts;
 };
 
-export default locker;
+export default connect(mapAuthStateToProps)(locker);

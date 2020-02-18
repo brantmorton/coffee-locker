@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 import PostContainer from "../../containers/PostContainer/PostContainer";
 import LoginForm from "../LoginForm/LoginForm";
-import Auth from "../../Auth";
 import Callback from "../Callback/Callback";
-
-const auth = new Auth();
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps";
 
 class Layout extends Component {
   state = {
@@ -39,7 +38,6 @@ class Layout extends Component {
         <Toolbar
           drawerToggleClicked={this.sideDrawerToggleHandler}
           isPostFormShowing={this.state.isPostFormShowing}
-          auth={auth}
         />
         {/* this route is the authentication callback */}
         <Route path="/callback" render={() => <Callback />} />
@@ -48,26 +46,24 @@ class Layout extends Component {
           path="/"
           exact
           render={() =>
-            auth.isAuthenticated() ? (
+            this.props.auth.isAuthenticated() ? (
               <Redirect to={"/feed"} />
             ) : (
-              <LoginForm auth={auth} />
+              <LoginForm />
             )
           }
         />
         <SideDrawer
           open={this.state.showSideDrawer}
           closed={this.sideDrawerClosedHandler}
-          auth={auth}
         />
         <PostContainer
           togglePostForm={this.postFormToggleHandler}
           isPostFormShowing={this.state.isPostFormShowing}
-          auth={auth}
         />
       </div>
     );
   }
 }
 
-export default Layout;
+export default connect(mapAuthStateToProps)(Layout);

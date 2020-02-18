@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from "react-redux"
 
 import TastingNotes from "../TastingNotes/TastingNotes";
 import StarRatingComponent from "react-star-rating-controlled-component";
 import Button from "../UI/Button/Button";
 import styles from "./CoffeePost.module.css";
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps"
 
 const coffeePost = props => {
   const user = props.auth.getProfile().nickname;
@@ -42,4 +44,4 @@ const coffeePost = props => {
   );
 };
 
-export default coffeePost;
+export default connect(mapAuthStateToProps)(coffeePost);

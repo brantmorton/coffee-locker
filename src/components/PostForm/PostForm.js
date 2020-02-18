@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"
 
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -7,6 +8,7 @@ import StarRatingComponent from "react-star-rating-controlled-component";
 import Button from "../../components/UI/Button/Button";
 import styles from "./PostForm.module.css";
 import axios from "axios";
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps";
 
 // sets time of post (i.e. January 25, 2020, 6:57 PM)
 const timeOptions = {
@@ -125,4 +127,4 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+export default connect(mapAuthStateToProps)(PostForm);

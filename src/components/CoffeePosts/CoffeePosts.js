@@ -23,7 +23,6 @@ const coffeePosts = props => {
           key={postKey}
           // this logic allows posts to be deleted in 'feed' and 'locker'
           clickDelete={() => props.delete(eachPost.id || postKey)}
-          auth={props.auth}
         />
       );
     });

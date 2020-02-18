@@ -19,7 +19,7 @@ const sideDrawer = props => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems logout={props.auth.logout} className={styles} />
+          <NavigationItems className={styles} />
         </nav>
       </div>
     </div>

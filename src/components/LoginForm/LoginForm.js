@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"
 
 import Button from "../../components/UI/Button/Button";
 import styles from "./LoginForm.module.css";
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps"
 
 class LoginForm extends Component {
   render() {
@@ -20,4 +22,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default connect(mapAuthStateToProps)(LoginForm);

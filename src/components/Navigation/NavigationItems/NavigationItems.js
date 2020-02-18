@@ -2,15 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./NavigationItems.module.css";
-import Auth from "../../../Auth";
-
-const auth = new Auth();
+import { connect } from "react-redux";
+import mapAuthStateToProps from '../../../helpers/mapAuthStateToProps'
 
 const navigationItems = props =>
-  auth.isAuthenticated() ? (
+  props.auth.isAuthenticated() ? (
     <ul className={styles.NavigationItems}>
       <li className={styles.LogoutLI}>
-        <button className={styles.LogoutBtn} onClick={props.logout}>
+        <button className={styles.LogoutBtn} onClick={props.auth.logout}>
           Log Out
         </button>
       </li>
@@ -29,4 +28,5 @@ const navigationItems = props =>
     </ul>
   );
 
-export default navigationItems;
+
+export default connect(mapAuthStateToProps)(navigationItems);

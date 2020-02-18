@@ -5,6 +5,9 @@ import Auth from "../../Auth";
 
 import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { Provider } from "react-redux";
+
+import store from "../../store";
 
 const auth = new Auth();
 
@@ -24,11 +27,19 @@ it("renders all posts", () => {
     2: { roaster: "Onyx", origin: "Kenyan" }
   };
 
-  const { getAllByTestId } = render(<CoffeePosts auth={auth} posts={posts} />);
+  const { getAllByTestId } = render(
+    <Provider store={store}>
+      <CoffeePosts posts={posts} />
+    </Provider>
+  );
   expect(getAllByTestId("post")).toHaveLength(2);
 });
 
 it("shows landing page if there are no available posts in locker", () => {
-  const { getByText } = render(<CoffeePosts empty auth={auth} />);
+  const { getByText } = render(
+    <Provider store={store}>
+      <CoffeePosts empty />
+    </Provider>
+  );
   expect(getByText("please add a post!")).toBeVisible();
 });

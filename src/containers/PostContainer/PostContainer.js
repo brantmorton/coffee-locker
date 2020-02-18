@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux"
+
 import CoffeePosts from "../../components/CoffeePosts/CoffeePosts";
 import PostForm from "../../components/PostForm/PostForm";
 import { Fab } from "@material-ui/core";
@@ -8,7 +11,7 @@ import styles from "./PostContainer.module.css";
 import Aux from "../../hoc/Auxilary/Auxilary";
 import Modal from "../../components/UI/Modal/Modal";
 import Locker from "../../components/Locker/Locker";
-import { Route } from "react-router-dom";
+import mapAuthStateToProps from "../../helpers/mapAuthStateToProps";
 
 class PostContainer extends Component {
   state = {
@@ -75,7 +78,6 @@ class PostContainer extends Component {
             <PostForm
               close={this.props.togglePostForm}
               getPosts={this.getPosts}
-              auth={this.props.auth}
             />
           </Modal>
         </Aux>
@@ -88,7 +90,6 @@ class PostContainer extends Component {
         <CoffeePosts
           posts={this.state.posts}
           delete={this.onDeleteClick}
-          auth={this.props.auth}
         />
       </Aux>
     );
@@ -99,7 +100,6 @@ class PostContainer extends Component {
         <Locker
           posts={this.state.posts}
           delete={this.onDeleteClick}
-          auth={this.props.auth}
         />
       </Aux>
     );
@@ -113,4 +113,4 @@ class PostContainer extends Component {
   }
 }
 
-export default PostContainer;
+export default connect(mapAuthStateToProps)(PostContainer);
