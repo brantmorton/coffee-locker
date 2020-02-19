@@ -7,20 +7,18 @@ import AxiosMock from "axios";
 import { render, cleanup, waitForElement } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
+import { renderWithRedux, ReactDOMRenderWithRedux } from "../../hoc/renderWithRedux/renderWithRedux"
 
 // prevents console proptype error from no star-rating prop passed
 console.error = jest.fn();
-
-// required to prevent error
-const auth = new Auth();
 
 afterEach(cleanup);
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(
+  ReactDOMRenderWithRedux(
     <BrowserRouter>
-      <PostContainer auth={auth} />
+      <PostContainer />
     </BrowserRouter>,
     div
   );
@@ -35,9 +33,9 @@ it("fetches data", async () => {
     }
   });
 
-  const { getAllByText } = render(
+  const { getAllByText } = renderWithRedux(
     <MemoryRouter initialEntries={["/feed"]}>
-      <PostContainer auth={auth} />
+      <PostContainer />
     </MemoryRouter>
   );
   const resolvedPosts = await waitForElement(() => getAllByText("test"));
@@ -46,10 +44,9 @@ it("fetches data", async () => {
 });
 
 it("shows locker when navigated to '/locker'", () => {
-  const { getByText } = render(
+  const { getByText } = renderWithRedux(
     <MemoryRouter initialEntries={["/locker"]}>
       <PostContainer
-        auth={auth}
         testPosts={{
           1: { roaster: "test", origin: "origin" }
         }}
@@ -60,10 +57,9 @@ it("shows locker when navigated to '/locker'", () => {
 });
 
 it("shows locker when navigated to '/feed'", () => {
-  const { getByText } = render(
+  const { getByText } = renderWithRedux(
     <MemoryRouter initialEntries={["/feed"]}>
       <PostContainer
-        auth={auth}
         testPosts={{
           1: { roaster: "TEST1", origin: "origin" }
         }}
