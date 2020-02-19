@@ -1,15 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import CoffeePosts from "./CoffeePosts";
-import Auth from "../../Auth";
-
-import { render, cleanup } from "@testing-library/react";
+import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { Provider } from "react-redux";
 
-import store from "../../store";
-
-const auth = new Auth();
+import { renderWithRedux } from "../../hoc/renderWithRedux/renderWithRedux";
+import CoffeePosts from "./CoffeePosts";
 
 afterEach(cleanup);
 
@@ -27,19 +22,11 @@ it("renders all posts", () => {
     2: { roaster: "Onyx", origin: "Kenyan" }
   };
 
-  const { getAllByTestId } = render(
-    <Provider store={store}>
-      <CoffeePosts posts={posts} />
-    </Provider>
-  );
+  const { getAllByTestId } = renderWithRedux(<CoffeePosts posts={posts} />);
   expect(getAllByTestId("post")).toHaveLength(2);
 });
 
 it("shows landing page if there are no available posts in locker", () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <CoffeePosts empty />
-    </Provider>
-  );
+  const { getByText } = renderWithRedux(<CoffeePosts empty />);
   expect(getByText("please add a post!")).toBeVisible();
 });
