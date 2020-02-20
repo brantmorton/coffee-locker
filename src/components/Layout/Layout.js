@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { togglePostForm } from "../../actions";
+import { togglePostForm } from "../../redux/actions";
 
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
