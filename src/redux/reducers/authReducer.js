@@ -3,7 +3,7 @@ import Auth from "../Auth";
 const auth = new Auth();
 
 const initialState = {
-  auth: auth
+  authObject: auth
 };
 
 export default function(state = initialState, action) {

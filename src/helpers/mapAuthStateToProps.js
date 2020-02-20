@@ -1,5 +1,5 @@
 const mapAuthStateToProps = state => ({
-  auth: state.auth.auth
+  auth: state.auth.authObject
 });
 
 export default mapAuthStateToProps;

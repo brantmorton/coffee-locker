@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { togglePostForm } from "../../actions";
 
 import styles from "./Layout.module.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
@@ -8,12 +9,10 @@ import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
 import PostContainer from "../../containers/PostContainer/PostContainer";
 import LoginForm from "../LoginForm/LoginForm";
 import Callback from "../Callback/Callback";
-import mapAuthStateToProps from "../../helpers/mapAuthStateToProps";
 
 class Layout extends Component {
   state = {
-    showSideDrawer: false,
-    isPostFormShowing: false
+    showSideDrawer: false
   };
 
   sideDrawerClosedHandler = () => {
@@ -26,18 +25,12 @@ class Layout extends Component {
     });
   };
 
-  postFormToggleHandler = () => {
-    this.setState(prevState => ({
-      isPostFormShowing: !prevState.isPostFormShowing
-    }));
-  };
-
   render() {
     return (
       <div className={styles.Layout}>
         <Toolbar
           drawerToggleClicked={this.sideDrawerToggleHandler}
-          isPostFormShowing={this.state.isPostFormShowing}
+          isPostFormShowing={this.props.isPostFormShowing}
         />
         {/* this route is the authentication callback */}
         <Route path="/callback" render={() => <Callback />} />
@@ -58,12 +51,25 @@ class Layout extends Component {
           closed={this.sideDrawerClosedHandler}
         />
         <PostContainer
-          togglePostForm={this.postFormToggleHandler}
-          isPostFormShowing={this.state.isPostFormShowing}
+          togglePostForm={this.props.togglePostForm}
+          isPostFormShowing={this.props.isPostFormShowing}
         />
       </div>
     );
   }
 }
 
-export default connect(mapAuthStateToProps)(Layout);
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.authObject,
+    isPostFormShowing: state.postForm.isPostFormShowing
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    togglePostForm: () => dispatch(togglePostForm())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
