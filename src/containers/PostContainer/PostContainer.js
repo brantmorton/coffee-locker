@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 import CoffeePosts from "../../components/CoffeePosts/CoffeePosts";
+import { togglePostForm } from "../../redux/actions";
 import PostForm from "../../components/PostForm/PostForm";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
@@ -11,7 +12,6 @@ import styles from "./PostContainer.module.css";
 import Aux from "../../hoc/Auxilary/Auxilary";
 import Modal from "../../components/UI/Modal/Modal";
 import Locker from "../../components/Locker/Locker";
-import mapAuthStateToProps from "../../helpers/mapAuthStateToProps";
 
 class PostContainer extends Component {
   state = {
@@ -76,7 +76,7 @@ class PostContainer extends Component {
             modalClosed={this.props.togglePostForm}
           >
             <PostForm
-              close={this.props.togglePostForm}
+              togglePostForm={this.props.togglePostForm}
               getPosts={this.getPosts}
             />
           </Modal>
@@ -87,20 +87,14 @@ class PostContainer extends Component {
     const feedPage = (
       <Aux>
         {this.props.auth.isAuthenticated() ? newPostForm : null}
-        <CoffeePosts
-          posts={this.state.posts}
-          delete={this.onDeleteClick}
-        />
+        <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
       </Aux>
     );
 
     const lockerPage = (
       <Aux>
         {newPostForm}
-        <Locker
-          posts={this.state.posts}
-          delete={this.onDeleteClick}
-        />
+        <Locker posts={this.state.posts} delete={this.onDeleteClick} />
       </Aux>
     );
 
@@ -113,4 +107,18 @@ class PostContainer extends Component {
   }
 }
 
-export default connect(mapAuthStateToProps)(PostContainer);
+// for redux
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.authObject,
+    isPostFormShowing: state.postForm.isPostFormShowing
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    togglePostForm: () => dispatch(togglePostForm())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);

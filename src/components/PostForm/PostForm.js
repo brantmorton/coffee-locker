@@ -61,7 +61,7 @@ class PostForm extends Component {
             .post("https://coffee-locker.firebaseio.com/posts.json", values)
             .then(response => {
               this.props.getPosts();
-              this.props.close();
+              this.props.togglePostForm();
               // set up error handling
               // maybe a more efficient way to do this?
             });
@@ -117,7 +117,7 @@ class PostForm extends Component {
           />
           <div style={{ paddingTop: "10px" }}>
             <Button type="submit">Submit</Button>
-            <Button btnType="Danger" clicked={this.props.close}>
+            <Button btnType="Danger" clicked={this.props.togglePostForm}>
               Close
             </Button>
           </div>
