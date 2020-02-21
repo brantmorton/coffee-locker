@@ -3,11 +3,11 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import styles from "./Layout.module.css";
-import Toolbar from "../Navigation/Toolbar/Toolbar";
-import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
-import PostContainer from "../../containers/PostContainer/PostContainer";
-import LoginForm from "../LoginForm/LoginForm";
-import Callback from "../Callback/Callback";
+import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
+import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
+import PostContainer from "../PostContainer/PostContainer";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import Callback from "../../components/Callback/Callback";
 import mapAuthStateToProps from '../../helpers/mapAuthStateToProps'
 
 class Layout extends Component {

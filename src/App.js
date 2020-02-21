@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from './redux/store'
 
 import "./App.css";
-import Layout from "./components/Layout/Layout";
+import Layout from "./containers/Layout/Layout";
 
 const app = () => {
   return (
