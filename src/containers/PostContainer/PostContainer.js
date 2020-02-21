@@ -93,7 +93,7 @@ class PostContainer extends Component {
 
     const lockerPage = (
       <Aux>
-        {newPostForm}
+        {this.props.auth.isAuthenticated() ? newPostForm : null}
         <Locker posts={this.state.posts} delete={this.onDeleteClick} />
       </Aux>
     );
