@@ -31,6 +31,7 @@ const locker = props => {
           <CoffeePosts
             posts={mappedPosts}
             delete={props.delete}
+            edit={props.edit}
           />
         </div>
       );

@@ -54,6 +54,17 @@ class PostContainer extends Component {
       });
   };
 
+  onEditClick = id => {
+    axios
+      .get("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
   render() {
     let newPostForm = (
       // this is the Material-UI new post button
@@ -87,14 +98,22 @@ class PostContainer extends Component {
     const feedPage = (
       <Aux>
         {this.props.auth.isAuthenticated() ? newPostForm : null}
-        <CoffeePosts posts={this.state.posts} delete={this.onDeleteClick} />
+        <CoffeePosts
+          posts={this.state.posts}
+          delete={this.onDeleteClick}
+          edit={this.onEditClick}
+        />
       </Aux>
     );
 
     const lockerPage = (
       <Aux>
         {this.props.auth.isAuthenticated() ? newPostForm : null}
-        <Locker posts={this.state.posts} delete={this.onDeleteClick} />
+        <Locker
+          posts={this.state.posts}
+          delete={this.onDeleteClick}
+          edit={this.onEditClick}
+        />
       </Aux>
     );
 
