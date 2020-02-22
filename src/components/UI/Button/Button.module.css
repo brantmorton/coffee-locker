@@ -1,22 +1,24 @@
 .Button {
-  display: block;
-  background-color: #9a4ef1;
-  border: 0.12em solid rgba(255, 255, 255, 0);
+  display: inline-block;
+  width: 90px;
+  background-color: white;
+  border: 0.12em solid #9a4ef1;
   border-radius: 2em;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #9a4ef1;
   text-decoration: none;
   font-size: medium;
   cursor: pointer;
   font-weight: 300;
-  padding: 0.3em 1.2em;
-  margin: auto;
+  padding: 0.3em 0.2em;
+  margin: 1vw;
   text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
   transition: all 0.2s;
 }
 
 .Button:hover {
-  border-color: rgba(255, 255, 255, 1);
+  color: white;
+  background-color: #9a4ef1;
 }
 
 .Success {
@@ -25,11 +27,13 @@
 
 .Danger {
   background-color: white;
-  color: #b91313;
+  color: #f50057;
+  border-color: #f50057;
 }
 
 .Danger:hover {
-  border-color: #b91313;
+  color: white;
+  background-color: #f50057;
 }
 
 @media all and (max-width: 30em) {

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import TastingNotes from "../TastingNotes/TastingNotes";
 import StarRatingComponent from "react-star-rating-controlled-component";
-import Button from "../UI/Button/Button";
+import PostButtons from "../PostButtons/PostButtons"
 import styles from "./CoffeePost.module.css";
 import mapAuthStateToProps from "../../helpers/mapAuthStateToProps"
 
@@ -32,13 +32,7 @@ const coffeePost = props => {
       <p className={styles.DatePosted}>{props.datePosted}</p>
 
       {(props.author === user || props.author === props.testUser) && (
-        <Button
-          className={styles.Button}
-          clicked={props.clickDelete}
-          extraStyles="DeleteButton"
-        >
-          Delete
-        </Button>
+        <PostButtons clickDelete={props.clickDelete} clickEdit={props.clickEdit} />
       )}
     </div>
   );
