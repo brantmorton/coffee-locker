@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import CoffeePosts from "../../components/CoffeePosts/CoffeePosts";
 import { togglePostForm } from "../../redux/actions";
 import PostForm from "../../components/PostForm/PostForm";
+import EditPostForm from "../../components/EditPostForm/EditPostForm";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
@@ -15,7 +16,9 @@ import Locker from "../../components/Locker/Locker";
 
 class PostContainer extends Component {
   state = {
-    posts: this.props.testPosts
+    posts: this.props.testPosts,
+    selectedPost: null,
+    editing: false
   };
 
   componentDidMount() {
@@ -58,14 +61,19 @@ class PostContainer extends Component {
     axios
       .get("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
       .then(response => {
-        console.log(response.data);
+        this.setState({ selectedPost: response.data, editing: true });
       })
       .catch(error => {
         console.log(error.message);
       });
   };
 
+  handleEditToggle = () => {
+    this.setState(prevState => ({ editing: !prevState.editing }));
+  };
+
   render() {
+    let editPostForm;
     let newPostForm = (
       // this is the Material-UI new post button
       <div className={styles.AddButton}>
@@ -95,9 +103,24 @@ class PostContainer extends Component {
       );
     }
 
+    if (this.state.editing) {
+      editPostForm = (
+        <Aux>
+          <Modal show={this.state.editing} modalClosed={this.handleEditToggle}>
+            <EditPostForm
+              toggleEditForm={this.handleEditToggle}
+              getPosts={this.getPosts}
+              selectedPost={this.state.selectedPost}
+            />
+          </Modal>
+        </Aux>
+      );
+    }
+
     const feedPage = (
       <Aux>
         {this.props.auth.isAuthenticated() ? newPostForm : null}
+        {editPostForm}
         <CoffeePosts
           posts={this.state.posts}
           delete={this.onDeleteClick}
@@ -109,6 +132,7 @@ class PostContainer extends Component {
     const lockerPage = (
       <Aux>
         {this.props.auth.isAuthenticated() ? newPostForm : null}
+        {editPostForm}
         <Locker
           posts={this.state.posts}
           delete={this.onDeleteClick}

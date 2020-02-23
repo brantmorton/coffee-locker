@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
@@ -28,7 +28,7 @@ class PostForm extends Component {
   };
 
   nickname = this.props.auth.getProfile().nickname || "Unknown User";
-  photo = this.props.auth.getProfile().picture;
+  // photo = this.props.auth.getProfile().picture;
 
   render() {
     return (
