@@ -1,7 +1,7 @@
 .Button {
   display: inline-block;
   width: 90px;
-  background-color: white;
+  background-color: transparent;
   border: 0.12em solid #9a4ef1;
   border-radius: 2em;
   box-sizing: border-box;
