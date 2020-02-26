@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import CoffeePosts from "../../components/CoffeePosts/CoffeePosts";
-import { togglePostForm } from "../../redux/actions";
+import { togglePostForm, toggleEditForm } from "../../redux/actions";
 import PostForm from "../../components/PostForm/PostForm";
 import EditPostForm from "../../components/EditPostForm/EditPostForm";
 import { Fab } from "@material-ui/core";
@@ -61,15 +61,12 @@ class PostContainer extends Component {
     axios
       .get("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
       .then(response => {
-        this.setState({ selectedPost: response.data, editing: true });
+        this.setState({ selectedPost: response.data });
+        this.props.toggleEditForm();
       })
       .catch(error => {
         console.log(error.message);
       });
-  };
-
-  handleEditToggle = () => {
-    this.setState(prevState => ({ editing: !prevState.editing }));
   };
 
   render() {
@@ -103,12 +100,15 @@ class PostContainer extends Component {
       );
     }
 
-    if (this.state.editing) {
+    if (this.props.isEditFormShowing) {
       editPostForm = (
         <Aux>
-          <Modal show={this.state.editing} modalClosed={this.handleEditToggle}>
+          <Modal
+            show={this.props.isEditFormShowing}
+            modalClosed={this.props.toggleEditForm}
+          >
             <EditPostForm
-              toggleEditForm={this.handleEditToggle}
+              toggleEditForm={this.props.toggleEditForm}
               getPosts={this.getPosts}
               selectedPost={this.state.selectedPost}
             />
@@ -154,13 +154,15 @@ class PostContainer extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.auth.authObject,
-    isPostFormShowing: state.postForm.isPostFormShowing
+    isPostFormShowing: state.postForm.isPostFormShowing,
+    isEditFormShowing: state.editForm.isEditFormShowing
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    togglePostForm: () => dispatch(togglePostForm())
+    togglePostForm: () => dispatch(togglePostForm()),
+    toggleEditForm: () => dispatch(toggleEditForm())
   };
 };
 

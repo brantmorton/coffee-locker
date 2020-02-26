@@ -1,2 +1,3 @@
 
 export const POST_FORM_SHOWING = "POST_FORM_SHOWING";
+export const EDIT_FORM_SHOWING = "EDIT_FORM_SHOWING";
