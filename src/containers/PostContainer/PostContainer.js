@@ -61,7 +61,7 @@ class PostContainer extends Component {
     axios
       .get("https://coffee-locker.firebaseio.com/posts/" + id + ".json")
       .then(response => {
-        this.setState({ selectedPost: response.data });
+        this.setState({ selectedPost: response.data, postId: id });
         this.props.toggleEditForm();
       })
       .catch(error => {
@@ -111,6 +111,7 @@ class PostContainer extends Component {
               toggleEditForm={this.props.toggleEditForm}
               getPosts={this.getPosts}
               selectedPost={this.state.selectedPost}
+              postId={this.state.postId}
             />
           </Modal>
         </Aux>

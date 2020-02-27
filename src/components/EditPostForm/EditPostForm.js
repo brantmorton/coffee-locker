@@ -53,7 +53,7 @@ class EditPostForm extends Component {
           axios
             .put(
               "https://coffee-locker.firebaseio.com/posts/" +
-                this.props.selectedPost.id +
+                this.props.postId +
                 ".json",
               values
             )
