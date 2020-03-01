@@ -24,7 +24,6 @@ export default class Auth {
   };
 
   handleAuthentication = () => {
-    console.log("testing");
     this.auth0.parseHash((err, authResults) => {
       if (authResults && authResults.accessToken && authResults.idToken) {
         let expiresAt = JSON.stringify(
